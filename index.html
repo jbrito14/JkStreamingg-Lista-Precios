@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Precios de Streaming</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Animate.css para animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+        }
+        .header-table {
+            background-color: #000;
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px 0;
+            position: relative;
+        }
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+        }
+        .header-img {
+            max-height: 80px;
+            display: block;
+            margin: 0 auto;
+        }
+        .exchange-rate {
+            color: #ffffff;
+            font-weight: bold;
+            background-color: #ff0000;
+            padding: 5px 10px;
+            border-radius: 5px;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .title-animated {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            background-size: 400%;
+            --webkit-background-clip: text;
+            animation: animate 10s linear infinite;
+        }
+        @keyframes animate {
+            0% { background-position: 0%; }
+            100% { background-position: 400%; }
+        }
+        .price-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+                                                                    
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .card-img-top {
+            height: 120px;
+            object-fit: contain;
+            padding: 10px;
+            background-color: #000000;
+        }
+
+    
+        h1 {
+            color: #ffffff;
+            text-shadow: 0 10px 20px #ff0000;
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: #333;
+        }
+        .price-tag {
+            font-size: 1.2rem;
+            color: #28a745;
+            font-weight: bold;
+        }
+        .bsf-rate {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .whatsapp-btn {
+            background-color: #ff0000;
+            color: white;
+            font-weight: bold;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .whatsapp-btn:hover {
+            background-color: #000000;
+            color: white;
+        }
+        .instagram-btn {
+            background-color: #ff0000;
+            color: white;
+            font-weight: bold;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .instagram-btn:hover {
+            background-color: #000000;
+            color: white;
+        }
+        .facebook-btn {
+            background-color: #ff0000;
+            color: white;
+            font-weight: bold;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .facebook-btn:hover {
+            background-color: #000000;
+            color: white;
+        }
+        .fire-icon {
+            color: #ff0000;
+            margin: 0 5px;
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 768px) {
+            .exchange-rate {
+                position: static;
+                transform: none;
+                margin-top: 10px;
+                display: inline-block;
+            }
+            .header-content {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Tabla horizontal superior -->
+    <div class="header-table">
+        <div class="header-content">
+            <img src="log.jpeg" alt="Logo" class="header-img">
+            <div id="exchange-rate-display" class="exchange-rate animate__animated animate__fadeIn">
+                Tasa del día: Cargando...
+            </div>
+        </div>
+    </div>
+
+    <!-- Título animado -->
+    <div class="container text-center">
+        <h1 class="title-animated animate__animated animate__pulse animate__infinite">LISTADO DE PRECIOS</h1>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Fila de tarjetas -->
+        <div class="row" id="price-cards-container">
+            <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
+        </div>
+
+        <!-- Botones de WhatsApp y redes sociales -->
+        <div class="text-center my-4">
+            <div class="social-buttons">
+                <a href="https://wa.me/584248433315?text=Estoy%20interesado%20en%20los%20servicios%20de%20streaming" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp 1
+                </a>
+                <a href="https://wa.me/5491134761792?text=Quiero%20más%20información%20sobre%20los%20combos" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp 2
+                </a>
+                <a href="https://www.instagram.com/stream_jk?igsh=bXdpY2hwc2F2bWM4" target="_blank" class="instagram-btn">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61571552168967" target="_blank" class="facebook-btn">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script>
+    // Datos de los servicios
+    const services = [
+        { name: "NETFLIX", price: 3, image: "netflix.jpeg", featured: true },
+        { name: "DISNEY PLUS", price: 2.6, image: "disney.jpeg", featured: true },
+        { name: "PRIME VIDEO", price: 2.3, image: "primevideo.jpeg", featured: true },
+        { name: "CRUNCHYROLL", price: 2.3, image: "crunchyroll.jpeg" },
+        { name: "FLUJO TV", price: 2.6, image: "flujo.png" },
+        { name: "CANVA PRO (1 mes)", price: 2.3, image: "canva.jpeg" },
+        { name: "PARAMOUNT+ (Perfil)", price: 2.3, image: "paramount.jpeg" },
+        { name: "Vix (Perfil)", price: 2.3, image: "vix.jpeg" },
+        { name: "MAX (Pantalla)", price: 2.3, image: "max.jpeg" },
+        { name: "SPOTIFY (Perfil)", price: 3.3, image: "spotify.jpeg" },
+        { name: "YOUTUBE PREMIUM (Perfil)", price: 3, image: "youtube.jpeg" }
+    ];
+
+    // Variable para almacenar la tasa actual
+    let currentExchangeRate = 117.40; // Valor por defecto
+
+    // Función mejorada para obtener la tasa del BCV
+    async function getExchangeRate() {
+        try {
+            // Opción 1: Usar una API proxy (necesitarías implementar tu propio backend)
+            // const proxyResponse = await fetch('https://tu-backend.com/api/bcv-rate');
+            // const rateData = await proxyResponse.json();
+            // return rateData.rate;
+            
+            // Opción 2: Usar una API pública alternativa (ejemplo)
+            // const apiResponse = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+            // const rateData = await apiResponse.json();
+            // return rateData.rates.VES; // Si existe
+            
+            // Opción 3: Valor fijo temporal (actualiza manualmente)
+            // Según la tasa BCV del 17/07/2025
+            return 117.40;
+            
+        } catch (error) {
+            console.error("Error al obtener la tasa:", error);
+            return currentExchangeRate; // Mantiene el último valor conocido
+        }
+    }
+
+    // Función para actualizar el display de la tasa
+    async function updateExchangeRateDisplay() {
+        const rateDisplay = document.getElementById('exchange-rate-display');
+        currentExchangeRate = await getExchangeRate();
+        rateDisplay.textContent = `Tasa del día: ${currentExchangeRate} Bs.S`;
+        rateDisplay.classList.add('animate__fadeIn');
+        
+        // Remover la clase de animación después de que termine para poder reutilizarla
+        setTimeout(() => {
+            rateDisplay.classList.remove('animate__fadeIn');
+        }, 1000);
+    }
+
+    // Función para formatear números con separadores
+    function formatNumber(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    // Función para generar las tarjetas
+    async function generatePriceCards() {
+        const container = document.getElementById('price-cards-container');
+        
+        // Obtener y actualizar la tasa de cambio
+        currentExchangeRate = await getExchangeRate();
+        console.log("Tasa BCV actual:", currentExchangeRate);
+        
+        // Actualizar el display de la tasa
+        updateExchangeRateDisplay();
+        
+        // Limpiar contenedor
+        container.innerHTML = '';
+        
+        // Crear tarjetas para cada servicio
+        services.forEach(service => {
+            const bsfPrice = (service.price * currentExchangeRate);
+            const formattedPrice = formatNumber(bsfPrice.toFixed(2)).replace(',', '.');
+            
+            const cardCol = document.createElement('div');
+            cardCol.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
+            
+            const cardHTML = `
+                <div class="card price-card animate__animated animate__fadeIn">
+                    <img src="${service.image}" class="card-img-top" alt="${service.name}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">
+                            ${service.featured ? '<i class="fas fa-fire fire-icon"></i>' : ''}
+                            ${service.name}
+                            ${service.featured ? '<i class="fas fa-fire fire-icon"></i>' : ''}
+                        </h5>
+                        <p class="price-tag">${service.price}$</p>
+                        <p class="bsf-rate">≈ ${formattedPrice} Bs.S</p>
+                    </div>
+                </div>
+            `;
+            
+            cardCol.innerHTML = cardHTML;
+            container.appendChild(cardCol);
+        });
+    }
+
+    // Actualizar periódicamente (cada 24 horas)
+    setInterval(async () => {
+        const newRate = await getExchangeRate();
+        if (newRate !== currentExchangeRate) {
+            currentExchangeRate = newRate;
+            generatePriceCards();
+        }
+    }, 12 * 60 * 60 * 1000); // 24 horas
+
+    // Generar las tarjetas al cargar
+    window.onload = generatePriceCards;
+</script>
+</body>
+</html>
